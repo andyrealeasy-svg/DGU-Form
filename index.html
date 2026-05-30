@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DGU Application Form</title>
+    <!-- Tailwind CSS v4 CDN for drop-in styling -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: #3b82f6;
+        --color-primary-dark: #2563eb;
+        --color-duo-green: #58CC02;
+      }
+
+      @layer utilities {
+        .btn-primary {
+          @apply bg-[var(--color-primary)] text-white font-bold py-3 px-6 rounded-xl border-b-4 border-[var(--color-primary-dark)] active:border-b-0 active:translate-y-1 transition-all;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="bg-gray-50 font-sans min-h-[100dvh] w-full relative overflow-x-hidden">
 
@@ -135,7 +151,7 @@
         <img id="glitch-img" src="" alt="glitch" class="absolute glitch-flash object-contain max-w-[90vw] max-h-[90vh]" />
     </div>
 
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
 

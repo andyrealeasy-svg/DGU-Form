@@ -1,5 +1,3 @@
-import './index.css';
-
 const IMAGES = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz6VQLZhZiHQYbpY0JzCGxa2iuCBhv9UQIKbvwalO2tg&s=10',
   'https://play-lh.googleusercontent.com/DsyWoouXk7psjF7DCG6MJj_rX9RR9-liQskZXoKvcqQIu_ybUm4F5RntxWh1IZAVSLI',

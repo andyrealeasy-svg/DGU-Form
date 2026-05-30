@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-duo-green: #58CC02;
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-[var(--color-primary)] text-white font-bold py-3 px-6 rounded-xl border-b-4 border-[var(--color-primary-dark)] active:border-b-0 active:translate-y-1 transition-all;
+  }
+
+  .metal-bunker {
+    background-color: #111;
+    background-image: 
+      radial-gradient(circle at 100% 150%, #111 24%, #0a0a0a 25%, #0a0a0a 28%, #111 29%, #111 36%, #0a0a0a 36%, #0a0a0a 40%, transparent 40%, transparent),
+      radial-gradient(circle at 0 150%, #111 24%, #0a0a0a 25%, #0a0a0a 28%, #111 29%, #111 36%, #0a0a0a 36%, #0a0a0a 40%, transparent 40%, transparent),
+      radial-gradient(circle at 50%  100%, #0a0a0a 10%, #111 11%, #111 23%, #0a0a0a 24%, #0a0a0a 30%, #111 31%, #111 43%, #0a0a0a 44%, #0a0a0a 50%, #111 51%, #111 63%, #0a0a0a 64%, #0a0a0a 71%, transparent 71%, transparent),
+      radial-gradient(circle at 100% 50%, #0a0a0a 5%, #111 6%, #111 15%, #0a0a0a 16%, #0a0a0a 20%, #111 21%, #111 30%, #0a0a0a 31%, #0a0a0a 35%, #111 36%, #111 45%, #0a0a0a 46%, #0a0a0a 49%, transparent 50%, transparent),
+      radial-gradient(circle at 0 50%, #0a0a0a 5%, #111 6%, #111 15%, #0a0a0a 16%, #0a0a0a 20%, #111 21%, #111 30%, #0a0a0a 31%, #0a0a0a 35%, #111 36%, #111 45%, #0a0a0a 46%, #0a0a0a 49%, transparent 50%, transparent);
+    background-size: 100px 50px;
+  }
+}
+
+@keyframes glitch-anim {
+  0% { transform: translate(0) skew(0deg); opacity: 1; filter: hue-rotate(0deg); }
+  20% { transform: translate(-15px, 10px) skew(-10deg); opacity: 0.8; filter: hue-rotate(45deg); }
+  40% { transform: translate(20px, -10px) skew(15deg); opacity: 0.9; filter: hue-rotate(90deg); }
+  60% { transform: translate(-10px, 20px) skew(-5deg); opacity: 0.5; filter: hue-rotate(180deg) invert(1); }
+  80% { transform: translate(15px, -15px) skew(5deg); opacity: 1; filter: hue-rotate(270deg); }
+  100% { transform: translate(0) skew(0deg); opacity: 1; filter: hue-rotate(360deg); }
+}
+
+.glitch-flash {
+  animation: glitch-anim 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+}
+
+@keyframes shake-violent {
+  0% { transform: translate(2px, 2px) rotate(0deg); filter: blur(0px); }
+  10% { transform: translate(-4px, -3px) rotate(-1deg); filter: blur(1px) contrast(1.2); }
+  20% { transform: translate(-6px, 0px) rotate(1deg); filter: blur(0px); }
+  30% { transform: translate(4px, 6px) rotate(0deg); filter: blur(2px) contrast(1.5); }
+  40% { transform: translate(2px, -2px) rotate(2deg); filter: blur(0px); }
+  50% { transform: translate(-2px, 3px) rotate(-2deg); filter: blur(1px); }
+  60% { transform: translate(-4px, 2px) rotate(0deg); }
+  70% { transform: translate(6px, 2px) rotate(-2deg); filter: blur(2px) sepia(0.5); }
+  80% { transform: translate(-2px, -4px) rotate(2deg); }
+  90% { transform: translate(2px, 3px) rotate(0deg); }
+  100% { transform: translate(2px, -3px) rotate(-1deg); filter: blur(0px); }
+}
+
+.shake-bunker {
+  animation: shake-violent 0.3s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+@keyframes bunker-reveal {
+  0% { opacity: 0; filter: contrast(0.5) brightness(3); transform: scale(1.1); }
+  50% { opacity: 0.8; filter: contrast(1.5) brightness(1.2) hue-rotate(10deg); transform: scale(1.02); }
+  100% { opacity: 1; filter: contrast(1) brightness(1); transform: scale(1); }
+}
+
+.bunker-overlay {
+  animation: bunker-reveal 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.fade-out-form {
+  transition: opacity 2s ease-in, transform 2s cubic-bezier(0.4, 0, 0.2, 1), filter 2s ease-out;
+  opacity: 0;
+  transform: scale(0.85);
+  filter: blur(15px) grayscale(1) contrast(2);
+}

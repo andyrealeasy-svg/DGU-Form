@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DGU Application Form</title>
+  </head>
+  <body class="bg-gray-50 font-sans min-h-[100dvh] w-full relative overflow-x-hidden">
+
+    <!-- Bunker Background -->
+    <div id="bunker-bg" class="fixed inset-0 metal-bunker pointer-events-none z-0 opacity-0"></div>
+
+    <!-- Main Form Container -->
+    <div id="form-container" class="relative z-10 w-full min-h-[100dvh] flex items-center justify-center p-4 transition-all duration-[2000ms]">
+      <div class="max-w-xl w-full mx-auto animate-in fade-in zoom-in duration-500">
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 bg-[var(--color-primary)] rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+             <span class="text-white font-black text-2xl tracking-tighter">DGU</span>
+          </div>
+          <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 mb-2">Программа DGU</h1>
+          <p class="text-gray-500 font-medium">Заполните заявку для участия в программе</p>
+        </div>
+
+        <form id="dgu-form" class="bg-white/90 backdrop-blur-md rounded-3xl p-8 border-2 border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] space-y-8">
+          
+          <div class="space-y-2">
+            <label for="telegram" class="block text-sm font-bold text-gray-700 uppercase tracking-wide">
+              Юзернейм в Telegram
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <span class="text-gray-400 font-bold">@</span>
+              </div>
+              <input type="text" name="telegram" id="telegram" required placeholder="username"
+                class="block w-full pl-10 px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-0 focus:border-[var(--color-primary)] hover:border-gray-300 transition-colors font-medium outline-none text-lg text-gray-700"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="minecraft" class="block text-sm font-bold text-gray-700 uppercase tracking-wide">
+              Ник в Майнкрафте
+            </label>
+            <input type="text" name="minecraft" id="minecraft" required placeholder="PlayerName"
+              class="block w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-0 focus:border-[var(--color-primary)] hover:border-gray-300 transition-colors font-medium outline-none text-lg text-gray-700"
+            />
+          </div>
+
+          <div class="space-y-3">
+            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide">
+              Свободны ли Вы в 8 вечера по МСК?
+              <span id="local-time-display" class="block text-xs font-semibold text-gray-400 mt-1 lowercase normal-case"></span>
+            </label>
+            <div class="flex gap-4">
+              <label class="flex-1 cursor-pointer">
+                <input type="radio" name="availability" value="yes" required class="peer sr-only" />
+                <div class="w-full text-center py-3 border-2 border-gray-200 rounded-xl font-bold text-gray-400 peer-checked:border-[var(--color-primary)] peer-checked:text-[var(--color-primary)] peer-checked:bg-blue-50 transition-all hover:bg-gray-50">
+                  Да
+                </div>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                 <input type="radio" name="availability" value="no" class="peer sr-only" />
+                 <div class="w-full text-center py-3 border-2 border-gray-200 rounded-xl font-bold text-gray-400 peer-checked:border-red-400 peer-checked:text-red-500 peer-checked:bg-red-50 transition-all hover:bg-gray-50">
+                  Нет
+                 </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide text-center">
+              Секретный код
+            </label>
+            <div class="flex justify-center gap-4">
+              <div class="flex flex-col items-center gap-2">
+                <button type="button" onclick="updateDigit(0, 1)" class="w-12 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 rounded-lg text-gray-600 transition-colors">
+                  <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m18 15-6-6-6 6"></path></svg>
+                </button>
+                <div id="digit-0" class="w-16 h-20 border-2 border-gray-200 rounded-xl flex items-center justify-center text-4xl font-black text-gray-800 bg-white shadow-inner">0</div>
+                <button type="button" onclick="updateDigit(0, -1)" class="w-12 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 rounded-lg text-gray-600 transition-colors">
+                  <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <button type="button" onclick="updateDigit(1, 1)" class="w-12 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 rounded-lg text-gray-600 transition-colors">
+                  <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m18 15-6-6-6 6"></path></svg>
+                </button>
+                <div id="digit-1" class="w-16 h-20 border-2 border-gray-200 rounded-xl flex items-center justify-center text-4xl font-black text-gray-800 bg-white shadow-inner">0</div>
+                <button type="button" onclick="updateDigit(1, -1)" class="w-12 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 rounded-lg text-gray-600 transition-colors">
+                  <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <button type="button" onclick="updateDigit(2, 1)" class="w-12 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 rounded-lg text-gray-600 transition-colors">
+                  <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m18 15-6-6-6 6"></path></svg>
+                </button>
+                <div id="digit-2" class="w-16 h-20 border-2 border-gray-200 rounded-xl flex items-center justify-center text-4xl font-black text-gray-800 bg-white shadow-inner">0</div>
+                <button type="button" onclick="updateDigit(2, -1)" class="w-12 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 rounded-lg text-gray-600 transition-colors">
+                  <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="m6 9 6 6 6-6"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full btn-primary text-xl mt-6 relative overflow-hidden group">
+            <span class="relative z-10">Отправить заявку</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 z-20 flex items-center justify-center p-8 backdrop-blur-md animate-in fade-in duration-1000 pointer-events-none">
+       <div class="border border-red-500/50 bg-black/90 p-10 rounded-xl text-center shadow-[0_0_50px_rgba(255,0,0,0.3)]">
+          <h2 class="text-2xl md:text-3xl font-mono text-red-500 mb-4 glitch-flash">ВНИМАНИЕ.</h2>
+          <p class="text-red-400 font-mono text-base md:text-lg leading-relaxed max-w-sm">
+            Ваша заявка принята.<br />Ожидайте ответа...
+          </p>
+       </div>
+    </div>
+
+    <!-- Post-transition Glitch state -->
+    <div id="glitch-state" class="hidden fixed inset-0 z-30 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm pointer-events-none">
+      <div class="text-center space-y-6 max-w-2xl bg-black/80 p-8 md:p-12 py-16 md:py-24 rounded-2xl border border-red-500/30 shadow-2xl">
+       <h2 class="text-6xl md:text-8xl font-black tracking-widest text-[var(--color-duo-green)] drop-shadow-[0_0_25px_rgba(88,204,2,1)] glitch-flash mix-blend-screen">
+          DGU ЖДEТ ТЕБЯ.
+        </h2>
+        <p class="text-lg md:text-2xl text-[var(--color-duo-green)] opacity-80 font-mono tracking-widest mt-4 glitch-flash">
+           DUOLINGO GAME ULTRA
+        </p>
+      </div>
+    </div>
+
+    <div id="glitch-overlay-container" class="fixed inset-0 pointer-events-none z-50 flex items-center justify-center overflow-hidden hidden">
+        <img id="glitch-img" src="" alt="glitch" class="absolute glitch-flash object-contain max-w-[90vw] max-h-[90vh]" />
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
